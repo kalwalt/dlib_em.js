@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image_example</title>
+</head>
+<body>
+   
+    <script src="../build/dlib.js"></script>
+    <script src="loader.js"></script>
+    <script>
+        var Module = {
+            onRuntimeInitialized: function() {
+                console.log('Module loaded: ', Module);
+                //Module.transformImage("armchair.jpg");
+                loadImage("armchair.jpg")
+            }
+        };
+    </script>
+</body>
+</html>

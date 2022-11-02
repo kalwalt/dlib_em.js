@@ -1,0 +1,9 @@
+build/CMakeFiles/*
+emscripten/build/*
+Makefile
+*.cmake 
+*.txt
+*.h
+*.pc
+*.a
+build/*/
