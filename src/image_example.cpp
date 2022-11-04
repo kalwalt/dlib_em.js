@@ -15,3 +15,19 @@ void transform_image(const std::string& file) {
   // and thin
   suppress_non_maximum_edges(horz_gradient, vert_gradient, edge_image);
 };
+
+void transform_load_data(int rows, int cols, std::vector<unsigned char>& data){
+  array2d<rgb_pixel> img(rows, cols);
+  //rgb_pixel pix(255, 0, 0);
+  int i = 0;
+  for (auto r = 0; r < rows; r++){
+    for (auto c = 0; c < cols; c++){
+      img[r][c].red = data[i];
+      img[r][c].green = data[i + 1];
+      img[r][c].blue = data[i + 2];
+      i++;
+    }
+  }
+  //img[0][0] = pix;
+  std::cout << (int)img[0][0].red << std::endl;
+}

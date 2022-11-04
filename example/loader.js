@@ -13,7 +13,7 @@ async function loadImage (urlOrData) {
     } else {
       // fetch data via HTTP
       try { data = await fetchRemoteData(urlOrData, function(buf){
-        _storeDataFile(data, target)
+        _storeDataFile(buf, target)
       }) } catch (error) { throw error }
     }
 
@@ -28,7 +28,7 @@ async function loadImage (urlOrData) {
   function _storeDataFile (data, target) {
     // FS is provided by emscripten
     // Note: valid data must be in binary format encoded as Uint8Array
-    Module.FS.writeFile(target, data, {
+    FS.writeFile(target, data, {
       encoding: 'binary'
     })
   }
