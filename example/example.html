@@ -15,7 +15,7 @@
             onRuntimeInitialized: function() {
                 console.log('Module loaded: ', Module);
                 console.log(FS);
-                Module.transformLoadData();
+                loadData("armchair.jpg", 640, 480);
                 
                 loadImage("armchair.jpg")
             }

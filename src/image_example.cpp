@@ -17,7 +17,7 @@ void transform_image(const std::string& file) {
 };
 
 void transform_load_data(int rows, int cols, std::vector<unsigned char>& data){
-  array2d<rgb_pixel> img(rows, cols);
+  array2d<rgb_alpha_pixel> img(rows, cols);
   //rgb_pixel pix(255, 0, 0);
   int i = 0;
   for (auto r = 0; r < rows; r++){
@@ -25,6 +25,7 @@ void transform_load_data(int rows, int cols, std::vector<unsigned char>& data){
       img[r][c].red = data[i];
       img[r][c].green = data[i + 1];
       img[r][c].blue = data[i + 2];
+      img[r][c].alpha = data[i + 3];
       i++;
     }
   }
