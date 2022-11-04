@@ -1,8 +1,8 @@
 build/CMakeFiles/*
+build/*.txt
 emscripten/build/*
 Makefile
 *.cmake 
-*.txt
 *.h
 *.pc
 *.a

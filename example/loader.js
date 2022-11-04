@@ -12,10 +12,10 @@ async function loadImage (urlOrData) {
       
     } else {
       // fetch data via HTTP
-      try { data = await fetchRemoteData(urlOrData) } catch (error) { throw error }
+      try { data = await fetchRemoteData(urlOrData, function(buf){
+        _storeDataFile(data, target)
+      }) } catch (error) { throw error }
     }
-
-    _storeDataFile(data, target)
 
     // return the internal marker ID
     return Module.transformImage(target)
@@ -33,9 +33,18 @@ async function loadImage (urlOrData) {
     })
   }
 
-  async function fetchRemoteData(urlOrData) {
+  async function fetchRemoteData(urlOrData, callback) {
     fetch(urlOrData).then(response => {
-        response.blob()
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+    }
+    return response.blob();
     })
+    .then(blob => {
+      blob.arrayBuffer().then(buff => {
+          let buffer = new Uint8Array(buff)
+          callback(buffer);
+      })
+  })
 
   }

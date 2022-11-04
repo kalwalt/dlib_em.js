@@ -8,13 +8,13 @@
 </head>
 <body>
    
-    <script src="../build/dlib.js"></script>
+    <script src="../build/dlib_em.js"></script>
     <script src="loader.js"></script>
     <script>
         var Module = {
             onRuntimeInitialized: function() {
                 console.log('Module loaded: ', Module);
-                //Module.transformImage("armchair.jpg");
+                
                 loadImage("armchair.jpg")
             }
         };
