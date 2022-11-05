@@ -64,9 +64,13 @@ function loadData(urlOrData, width, height){
       return response.blob();
     })
     .then((blob) => {
+      console.log(blob);
       blob.arrayBuffer().then((buff) => {
-        let buffer = new Uint8Array(buff);
-        Module.transformLoadData(width, height, buffer)
+        console.log(buff);
+        let buffer = new Uint8Array(buff,0, 78234);
+        console.log(buffer);
+        let out = Module.transformLoadData(width, height, buffer);
+        console.log(out);
       });
     })
     .catch((error) => {
