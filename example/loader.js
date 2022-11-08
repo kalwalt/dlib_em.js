@@ -55,23 +55,19 @@ async function fetchRemoteData(urlOrData, callback) {
     });
 }
 
-function loadData(urlOrData, width, height){
+function loadData(urlOrData, width, height, errorCallback){
   fetch(urlOrData)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not OK");
       }
-      return response.blob();
+      return response.arrayBuffer();
     })
-    .then((blob) => {
-      console.log(blob);
-      blob.arrayBuffer().then((buff) => {
-        console.log(buff);
-        let buffer = new Uint8Array(buff,0, 78234);
+    .then((buff) => {
+      let buffer = new Uint8Array(buff);
         console.log(buffer);
         let out = Module.transformLoadData(width, height, buffer);
         console.log(out);
-      });
     })
     .catch((error) => {
       errorCallback(error);
