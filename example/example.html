@@ -7,6 +7,7 @@
     <title>image_example</title>
 </head>
 <body>
+    <canvas id="canvas" width="640" height="480"></canvas>
    
     <script src="../build/dlib_em.js"></script>
     <script src="loader.js"></script>
@@ -15,9 +16,14 @@
             onRuntimeInitialized: function() {
                 console.log('Module loaded: ', Module);
                 console.log(FS);
-                loadData("armchair.jpg", 640, 480);
+                loadData("armchair.jpg", 640, 480, (err) => {
+                    console.error(err)
+                })
                 
-                loadImage("armchair.jpg")
+                loadJpeg("armchair.jpg", () => {
+                    console.log("jpg loaded!");
+                }, (err) => {
+                    console.error(err)})
             }
         };
     </script>
