@@ -69,8 +69,11 @@ function loadData(urlOrData, width, height, errorCallback){
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         const imageData = ctx.createImageData(width, height)
-        for (let i = 0; i < imageData.data.length; i++) {
-          imageData.data[i] = out[i];
+        for (let i = 0, j = 0; i < imageData.data.length; i++, j += 4) {
+          imageData.data[j] = out[i];
+          imageData.data[j + 1] = out[i];
+          imageData.data[j + 2] = out[i];
+          imageData.data[j + 3] = 255;
       }
         ctx.putImageData(imageData, 0, 0);
     })

@@ -4,5 +4,4 @@ using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS(dlib_em) { 
     function("transformImage", &transformImage);
-    function("transformLoadData", &transformLoadData);
     };

@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>image_example</title>
 </head>
+
 <body>
     <canvas id="canvas" width="640" height="480"></canvas>
-   
+
     <script src="../build/dlib_em.js"></script>
     <script src="loader.js"></script>
     <script>
         var Module = {
-            onRuntimeInitialized: function() {
+            onRuntimeInitialized: function () {
                 console.log('Module loaded: ', Module);
-                console.log(FS);
-                loadData("armchair.jpg", 640, 480, (err) => {
+
+                loadJpeg("armchair.jpg", (out) => {
+                    console.log("jpg loaded!");
+                    var width = 640;
+                    var height = 480;
+                    var canvas = document.getElementById('canvas');
+                    var ctx = canvas.getContext('2d');
+                    const imageData = ctx.createImageData(width, height)
+                    for (let i = 0, j = 0; i < imageData.data.length; i++, j += 4) {
+                        imageData.data[j] = out[i];
+                        imageData.data[j + 1] = out[i];
+                        imageData.data[j + 2] = out[i];
+                        imageData.data[j + 3] = 255;
+                    }
+                    ctx.putImageData(imageData, 0, 0);
+                }, (err) => {
                     console.error(err)
                 })
-                
-                loadJpeg("armchair.jpg", () => {
-                    console.log("jpg loaded!");
-                }, (err) => {
-                    console.error(err)})
             }
         };
     </script>
 </body>
+
 </html>
