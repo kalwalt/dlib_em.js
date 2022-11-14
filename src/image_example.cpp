@@ -1,5 +1,10 @@
 #include "include/image_example.h"
 
+/* This example was taken by dlib exmples https://github.com/davisking/dlib/blob/master/examples/image_ex.cpp 
+   For more informations refer to comments in that. 
+   In this case we simply load a jpeg image and apply a gaussian filter and a sobel edge detector.
+   The result of image processing is returned outside the function. See transformImage in dlib_em.cpp how is handled.
+*/
 array2d<unsigned char> transform_image(const std::string &file) {
   array2d<rgb_pixel> img;
   load_image(img, file);
