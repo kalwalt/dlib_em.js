@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <emscripten.h>
 #include <emscripten/val.h>
+#define DLIB_PNG_SUPPORT
 #include <image_example.h>
 #include <vector>
 
